@@ -1,0 +1,7 @@
+Mismatch type
+Error :45.4 at 6 
+Valid syntax
+Name	size	type	lineno	scope	value
+x	4	3	9	1	4.5
+y	2	2	6	1	45.4
+z	2	2	13	2	35
