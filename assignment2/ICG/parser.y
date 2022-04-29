@@ -14,6 +14,7 @@
 	int temp_no = 1;
 	int label_no = 1;
 	char *temp_label;
+	char *temp_label2;
 %}
 
 
@@ -40,7 +41,13 @@ STMT : IF '(' COND ')'  {
 		temp_label=new_label();
 		quad_code_gen(NULL,NULL,"goto",temp_label);
 		quad_code_gen(NULL,NULL,"label",$$);
-}  '{' STMTS '}' {quad_code_gen(NULL,NULL,"label",temp_label);} ELSE_BLOCK
+}  '{' STMTS '}' {
+	temp_label2=new_label();
+	quad_code_gen(NULL,NULL,"goto",temp_label2);
+	quad_code_gen(NULL,NULL,"label",temp_label);
+} ELSE_BLOCK {
+	quad_code_gen(NULL,NULL,"label",temp_label2);
+}
 	| ASSGN
 ;
 
